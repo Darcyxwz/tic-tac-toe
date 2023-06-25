@@ -18,5 +18,4 @@ export default function Board() {
       </div>
     </div>
   );
-  //hello, baby
 }
