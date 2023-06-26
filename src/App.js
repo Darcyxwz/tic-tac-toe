@@ -10,9 +10,9 @@ export default function Board() {
   const [values, setValues] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    if (values[i] == null && !ifOneWin(values)) {
+    if (values[i] === null && !ifOneWin(values)) {
       const nextValues = values.slice();
-      if (order % 2 == 0) {
+      if (order % 2 === 0) {
         nextValues[i] = 'O';
         setValues(nextValues);
       }
@@ -30,7 +30,7 @@ export default function Board() {
     status = "Winner is " + winner;
   }
   else {
-    status = "Next is " + (order % 2 == 0 ? "O" : "X");
+    status = "Next is " + (order % 2 === 0 ? "O" : "X");
   }
 
   return (
