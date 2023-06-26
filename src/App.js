@@ -6,12 +6,11 @@ function Square({ value, onClick }) {
 }
 
 export default function Board() {
-  const [order, setOrder] = useState(0);
+  const [order, setOrder] = useState(1);
   const [values, setValues] = useState(Array(9).fill(null));
 
   function handleClick(i) {
     if (values[i] == null) {
-      setOrder(order + 1);
       const nextValues = values.slice();
       if (order % 2 == 0) {
         nextValues[i] = 'O';
@@ -21,6 +20,7 @@ export default function Board() {
         nextValues[i] = 'X';
         setValues(nextValues);
       }
+      setOrder(order + 1);
     }
   }
 
