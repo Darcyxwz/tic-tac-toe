@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-function Square({ value, onClick }) {
+function Square({ value, onClick }) { //this is a component, so the parameters should be in {}
   return <button className = "square" onClick = {onClick}>{value}</button>
 }
 
@@ -10,7 +10,7 @@ export default function Board() {
   const [values, setValues] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    if (values[i] == null) {
+    if (values[i] == null && !ifOneWin(values)) {
       const nextValues = values.slice();
       if (order % 2 == 0) {
         nextValues[i] = 'O';
@@ -45,4 +45,22 @@ export default function Board() {
   );
 }
 
-
+function ifOneWin(arr) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (arr[a] && arr[a] === arr[b] && arr[a] === arr[c]) {
+      return arr[a];
+    }
+  }
+  return null;
+}
