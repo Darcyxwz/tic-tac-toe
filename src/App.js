@@ -24,8 +24,18 @@ export default function Board() {
     }
   }
 
+  const winner = ifOneWin(values);
+  let status;
+  if (winner) {
+    status = "Winner is " + winner;
+  }
+  else {
+    status = "Next is " + (order % 2 == 0 ? "O" : "X");
+  }
+
   return (
     <div>
+      <div>{status}</div>
       <div className = "board-row">
         <Square onClick = {() => handleClick(0)} value = {values[0]} />
         <Square onClick = {() => handleClick(1)} value = {values[1]} />
