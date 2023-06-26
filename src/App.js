@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 
 
-function Square() {
-  const [value, setValue] = useState(null);
-  function handleClick() {
-    setValue('X');
-  }
-  return <button className = "square" onClick = {handleClick}>{value}</button>
+function Square({ value, onClick }) {
+  return <button className = "square" onClick = {onClick}>{value}</button>
 }
 
 export default function Board() {
+  const [order, setOrder] = useState(0);
+  const [value, setValue] = useState(null);
+  function handleClick() {
+    setOrder(order + 1);
+    if (order % 2 == 0) {
+      setValue('O');
+    }
+    else {
+      setValue('X');
+    }
+  }
   return (
     <div>
       <div className = "board-row">
-        <Square value = "1" /><Square /><Square />
+        <Square onClick = {handleClick} value = {value} />
+        <Square onClick = {handleClick} value = {value} />
+        <Square onClick = {handleClick} value = {value} />
       </div>
       <div className = "board-row">
-        <Square /><Square /><Square />
+       <Square onClick = {handleClick} value = {value} />
+       <Square onClick = {handleClick} value = {value} />
+       <Square onClick = {handleClick} value = {value} />
       </div>
       <div className = "board-row">
-        <Square /><Square /><Square />
+       <Square onClick = {handleClick} value = {value} />
+       <Square onClick = {handleClick} value = {value} />
+       <Square onClick = {handleClick} value = {value} />
       </div>
     </div>
   );
